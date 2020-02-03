@@ -17,7 +17,7 @@ router.delete('/universities/:id', universitiesController.deleteUniversity)
 
 //USERS ROUTES
 router.get('/users', auth,usersController.getUser)
-router.get('/login', usersController.login)
+router.post('/login', usersController.login)
 router.post('/logout', auth, usersController.logout)
 //router.get('/users', auth,usersController.getUsers)
 router.post('/users', usersController.createUser) // REGISTER
