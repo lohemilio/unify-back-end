@@ -2,10 +2,12 @@ const mongoose = require('mongoose')
 
 const favoriteSchema = new mongoose.Schema({
     universityName:{
-        type: String
+        type: String,
+        unique: true
     },
     universityId:{
-        type: String
+        type: String,
+        unique: true
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
