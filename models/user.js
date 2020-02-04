@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
           required: true 
         }
       }]
-},{
+    },{
     toObject: {
       virtuals: true
     },
@@ -63,19 +63,18 @@ userSchema.virtual('favorites', {
     return userObject
   }
 
-
-userSchema.methods.generateToken = function(){
+  userSchema.methods.generateToken = function() {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString()},
-    secret,{expiresIn: '7 days'})
-    user.tokens = user.tokens.concat({token})
-    user.save().then(function(user){
+    const token = jwt.sign({ _id: user._id.toString() }, secret, { expiresIn: '7 days'})
+    user.tokens = user.tokens.concat({ token })
+    return new Promise(function( resolve, reject) {
+      user.save().then(function(user){
         return resolve(token)
-      }).catch(function(error){
+      }).catch(function(error) {
         return reject(error)
       })
-    
-}
+    })
+  }
 
 userSchema.statics.findByCredentials = function(email, password) 
 {
