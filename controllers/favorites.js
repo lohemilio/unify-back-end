@@ -27,7 +27,7 @@ const getFavorites = function(req, res) {
     // modificar aqui
     const favorite = new Favorite({
       //...req.body.description
-      universityName: req.body.description,
+      universityName: req.body.universityName,
       universityId: req.body.universityId,
       createdBy: req.user._id
     })
