@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 var secret = process.env.SECRET || require('../config.js').secret
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name:{
         type: String,
         require: true
@@ -26,13 +26,42 @@ const userSchema = mongoose.Schema({
         required: true,
         minlength: 6
     },
+    admin:
+    {
+        type: Boolean,
+        default: false
+    },
     tokens: [{
         token: {
           type: String,
           required: true 
         }
       }]
-})
+},{
+    toObject: {
+      virtuals: true
+    },
+    toJSON: {
+      virtuals: true 
+    }
+  })
+
+  // una relacion entre dos Schemas, no lo guarda, es virtual 
+userSchema.virtual('favorites', {
+    ref: 'Favorite',
+    localField: '_id',
+    foreignField: 'createdBy'
+  })
+
+  userSchema.methods.toJSON = function() {
+    const user = this
+    const userObject = user.toObject()
+  
+    delete userObject.password
+    delete userObject.tokens
+  
+    return userObject
+  }
 
 
 userSchema.methods.generateToken = function(){

@@ -41,7 +41,6 @@ const universitySchema = new mongoose.Schema({
         type: String
     }
 
-
 })
 
 module.exports = University = mongoose.model('university',universitySchema)

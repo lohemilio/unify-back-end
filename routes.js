@@ -1,12 +1,11 @@
 const universitiesController = require('./controllers/universities')
 const usersController = require('./controllers/users')
+const favoritesController = require('./controllers/favorites')
 const express = require('express')
 const auth = require('./middleware/auth')
 const router = express.Router()
 
-router.get('/',function(req,res){
-    res.send("WELCOME TO THE API, TRY ONE OF THE ROUTES")
-})
+
 
 //UNIVERSITIES ROUTES
 router.get('/universities',universitiesController.getUniversities)
@@ -23,5 +22,13 @@ router.post('/logout', auth, usersController.logout)
 router.post('/users', usersController.createUser) // REGISTER
 router.patch('/users/', auth,usersController.updateUser)
 router.delete('/users/', auth,usersController.deleteUser)
+
+//FAVORITES ROUTES 
+router.get('/favorites/:id',auth,favoritesController.getFavorite)
+router.get('/favorites',auth, favoritesController.getFavorites)
+router.post('/favorites', auth, favoritesController.createFavorite)
+//router.patch('/favorites/:id',auth,favoritesController.updateFavorite)
+router.delete('/favorites/:id',auth,favoritesController.deleteFavorite)
+
 
 module.exports = router
