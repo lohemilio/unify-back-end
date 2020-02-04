@@ -31,4 +31,10 @@ router.post('/favorites', auth, favoritesController.createFavorite)
 router.delete('/favorites/:id',auth,favoritesController.deleteFavorite)
 
 
+router.get('*', function(req, res) {
+    res.send({
+      error: 'This route does not exist, try /users or /todos'
+    })
+  })
+
 module.exports = router
