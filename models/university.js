@@ -31,7 +31,7 @@ const universitySchema = new mongoose.Schema({
     places:{
         type:[String]
     },
-    dificulty:{
+    difficulty:{
         type: String
     },
     description:{
