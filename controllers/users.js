@@ -1,18 +1,5 @@
 const User = require('../models/user')
 
-//LOGIN 
-
-const login = function(req, res) {
-    User.findByCredentials(req.body.email, req.body.password)
-      .then(function(user) {
-        const token = user.generateToken()
-        console.log(token)
-        return res.send({user, token})
-      }).catch( function(error) {
-        return res.status(404).send({ error })
-      })
-  }
-
 
 //LOGOUT
 
@@ -70,6 +57,19 @@ const createUser = function(req, res){
     })
   }
 
+
+  
+//LOGIN 
+
+const login = function(req, res) {
+    User.findByCredentials(req.body.email, req.body.password)
+      .then(function(user) {
+        const token = user.generateToken()
+        return res.send({user, token})
+      }).catch( function(error) {
+        return res.status(404).send({ error })
+      })
+  }
 // UPDATE USER
 
 const updateUser = function(req, res) {
