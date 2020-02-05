@@ -31,6 +31,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    favorite:{
+      type: [String]
+    },
     tokens: [{
         token: {
           type: String,

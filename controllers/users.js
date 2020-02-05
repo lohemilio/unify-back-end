@@ -81,7 +81,7 @@ const updateUser = function(req, res) {
     // const _id = req.params.id
     const _id = req.user._id
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['name', 'email', 'password']
+    const allowedUpdates = ['name', 'email', 'password','favorite']
     // revisa que los updates enviados sean permitidos, que no envie una key que no permitimos
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
   
