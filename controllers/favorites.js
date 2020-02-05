@@ -34,7 +34,7 @@ const getFavorites = function(req, res) {
     favorite.save().then(function() {
       return res.send(favorite)
     }).catch(function(error) {
-      return res.status(400).send({ error: error })
+      return res.status(400).send({ error: "LA UNIVERSIDAD: " + favorite.universityName + " Ya está en tu lista de favoritos" })
     })
   }
 
